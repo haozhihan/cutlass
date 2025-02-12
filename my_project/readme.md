@@ -1,0 +1,1 @@
+nvcc -I/home/v-haozhihan/cutlass/include -I/home/v-haozhihan/cutlass/tools/util/include -arch=sm_80 my_code.cu -o example

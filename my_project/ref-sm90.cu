@@ -105,7 +105,10 @@ int main() {
   typename GemmKernel::EpilogueArguments epilogue_args{{cutlass::half_t(1), cutlass::half_t(0)}, c_ptr, strideC, c_ptr, strideC};
 
   using GemmOp = cutlass::gemm::device::GemmUniversalAdapter<GemmKernel>;
-  typename GemmKernel::Arguments args{cutlass::gemm::GemmUniversalMode::kGemm, prob_shape, mainloop_args, epilogue_args};
+  typename GemmKernel::Arguments args{cutlass::gemm::GemmUniversalMode::kGemm, 
+                                      prob_shape, 
+                                      mainloop_args, 
+                                      epilogue_args};
   args.scheduler.raster_order = cutlass::gemm::kernel::detail::PersistentTileSchedulerSm90::RasterOrderOptions::Heuristic; // AlongM:AlongM:Heuristic
   args.scheduler.max_swizzle_size = 8; // 1:2:4:8
 
